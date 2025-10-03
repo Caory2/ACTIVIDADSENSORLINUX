@@ -1,0 +1,47 @@
+.TH ASSIGNMENT-SENSOR 1 "October 2025" "assignment-sensor" "User Commands"
+.SH NAME
+assignment-sensor \- sample a simulated sensor and log ISO-8601 timestamped values
+.SH SYNOPSIS
+.BR assignment-sensor " [--interval <seconds>] [--logfile <path>] [--device <path>]"
+.SH DESCRIPTION
+The \fBassignment-sensor\fR program samples 8 bytes from a device (by default \fI/dev/urandom\fR) at a configurable interval and appends lines to a logfile.
+
+Each line has the form:
+.PP
+2025-10-03T04:55:10.372784951Z | 0xd8482ad47017050a
+.PP
+Timestamp is RFC3339 (UTC) with nanoseconds. Value is an 8-byte hex value.
+
+The program attempts to open the primary logfile; if that fails it falls back to /var/tmp/assignment_sensor.log.
+
+On SIGINT or SIGTERM the program flushes and closes the logfile and exits cleanly (exit code 0).
+.SH OPTIONS
+.TP
+.B --interval <seconds>
+Sampling interval in seconds (default: 5).
+.TP
+.B --logfile <path>
+Primary logfile path (default: /tmp/assignment_sensor.log).
+.TP
+.B --device <path>
+Device to read bytes from (default: /dev/urandom).
+.SH EXIT STATUS
+.TP
+.B 0
+Normal termination or termination after receiving SIGTERM/SIGINT.
+.TP
+.B 2
+Fatal error opening the device.
+.TP
+.B 3
+Fatal error opening logfile and fallback.
+.SH EXAMPLES
+.TP
+.B Run with 2s interval
+.nf
+./assignment-sensor --interval 2 --logfile /tmp/assignment_sensor.log
+.fi
+.SH AUTHOR
+Written as part of an embedded Linux assignment.
+.SH SEE ALSO
+.BR systemd (1)

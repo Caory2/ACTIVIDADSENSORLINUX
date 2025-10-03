@@ -1,0 +1,10 @@
+{
+  "tools": [
+    { "name": "go", "version": "unknown (build environment)" },
+    { "name": "systemd", "version": "system dependent" }
+  ],
+  "models": [
+    { "name": "ChatGPT", "version": "GPT-4o", "date": "2025-10-02" }
+  ],
+  "notes": "AI assisted design, code and documentation generation. User is responsible for verification and testing on target hardware."
+}

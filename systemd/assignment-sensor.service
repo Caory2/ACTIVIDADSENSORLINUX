@@ -1,0 +1,13 @@
+[Unit]
+Description=Mock sensor logger (assignment)
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/assignment-sensor --interval 5 --logfile /tmp/assignment_sensor.log --device /dev/urandom
+Restart=on-failure
+RestartSec=2
+# If running as non-root, consider adding 'User=sensoruser' and ensure permissions.
+
+[Install]
+WantedBy=multi-user.target
