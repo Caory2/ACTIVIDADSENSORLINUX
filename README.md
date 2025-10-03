@@ -16,7 +16,7 @@ Prerequisites
 
 Clone & build
 
-git clone <your-repo-url>
+git clone <https://github.com/Caory2/ACTIVIDADSENSORLINUX>
 cd ACTIVIDADSENSORLINUX
 make build
 
